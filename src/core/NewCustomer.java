@@ -1,7 +1,7 @@
 package core;
 
 public class NewCustomer {
-    private String name, lastName;
+    private final String name, lastName;
     private int age;
     private String address;
 // create constructor for this class on your local branch.Thanks
@@ -9,27 +9,27 @@ public class NewCustomer {
 
 
     public NewCustomer(String name, String lastName, int age, String address) {
-       setName(name);
-       setLastName(lastName);
-       setAge(age);
-       setAddress(address);
+        this.name = name;
+        this.lastName = lastName;
+        if (age < 0 || age > 150) {
+            if (age < 0)
+                throw new IllegalArgumentException("Age of the person should not be negative:" + age);
+        } else {
+            throw new IllegalArgumentException("Age of the person should not be more than 150" + age);
+        }
+        setAge(age);
+        setAddress(address);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public int getAge() {
         return age;
@@ -56,4 +56,5 @@ public class NewCustomer {
                 ", address='" + address + '\'' +
                 '}';
     }
+
 }
